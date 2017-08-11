@@ -2,7 +2,7 @@
   "name": "halbert-slackbot",
   "version": "0.1.0",
   "private": true,
-  "author": "Jon Fairbanks <fairplay89@gmail.com>",
+  "author": "Jon Fairbanks <https://github.com/jonfairbanks>",
   "description": "A simple helpful robot for Slack",
   "dependencies": {
     "@slack/client": "^3.6.0",

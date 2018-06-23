@@ -17,7 +17,7 @@ sendMsg = (res, body) ->
   # ** Find and Build a Random Quote **
   length = data.length
   rand = Math.floor(Math.random() * length)
-  msg = ">" + data[rand].quote + " - _" + data[rand].name + "_"
+  msg = ">\"" + data[rand].quote + "\" - _" + data[rand].name + "_"
 
   # ** Send It! **
   res.send msg

@@ -62,7 +62,7 @@ module.exports = (robot) ->
      url = 'https://isthereanydeal.com/#/search:' + query + ';/scroll:%23gamelist'
      res.send "#{url}"
 
-   robot.hear /hal/i, (res) ->
+   robot.hear /hal|@hal/i, (res) ->
      #res.send res.random phrases
 
    robot.hear /where are you/i, (res) ->

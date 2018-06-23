@@ -8,89 +8,141 @@
 #   None
 #
 # Commands:
-#   hal <symbol> price - returns current price and hourly percentage change for your coin from CoinMarketCap
-
-webcap = require('webcap');
-request = require('request');
-fs = require('fs');
-html2canvas = require('html2canvas');
+#   hal <symbol> price - returns current price data for your coin from CoinMarketCap
+#   hal <symbol> historical - returns last year's price for your coin from Coinbase
 
 module.exports = (robot) ->
-    round = (value, exp) ->
-      if typeof exp == 'undefined' or +exp == 0
-        return Math.round(value)
-      value = +value
-      exp = +exp
-      if isNaN(value) or !(typeof exp == 'number' and exp % 1 == 0)
-        return NaN
-      # Shift
-      value = value.toString().split('e')
-      value = Math.round(+(value[0] + 'e' + (if value[1] then +value[1] + exp else exp)))
-      # Shift back
-      value = value.toString().split('e')
-      +(value[0] + 'e' + (if value[1] then +value[1] - exp else -exp))
+	formatCurrency = (num) ->
+		num = num.toString().replace(/\$|\,/g, '')
+		if isNaN(num)
+			num = '0'
+		num = Math.floor(num * 100 + 0.50000000001)
+		cents = num % 100
+		num = Math.floor(num / 100).toString()
+		if cents < 10
+			cents = '0' + cents
+		i = 0
+		while i < Math.floor((num.length - (1 + i)) / 3)
+			num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3))
+			i++
+		num + '.' + cents
 
-    robot.respond /(.*) price/i, (msg) ->
-        #msg.send "```" + JSON.stringify(msg.message, null, " ") + "```" # Enable to debug the incoming message
-        query = msg.match[1]
-        symbol = query.toUpperCase()
-        url = "https://api.coinmarketcap.com/v1/ticker/?limit=150"
-        msg.http(url).headers(Accept: "application/json").get() (err, res, body) ->
-            unless res.statusCode is 200
-                msg.send "The CoinMarketCap API did not return a proper response! :rage5:"
-                return
-            res = JSON.parse body
+	formatOrdinal = (n) ->
+		s = [
+			'th'
+			'st'
+			'nd'
+			'rd'
+		]
+		v = n % 100
+		n + (s[(v - 20) % 10] or s[v] or s[0])
 
-            coin = {}
-            for row in res
-              coin[row.symbol] = {
-                name: row.name,
-                price_usd: round(row.price_usd, 2),
-                change_1hr: row.percent_change_1h,
-                change_24hr: row.percent_change_24h
-              }
+	robot.respond /(.*) price/i, (msg) ->
+		symbol = msg.match[1].toUpperCase()
+		url = "https://api.coinmarketcap.com/v1/ticker/?limit=1500"
+		msg.http(url).headers(Accept: "application/json").get() (err, res, body) ->
+			unless res.statusCode is 200
+				msg.send "The CoinMarketCap API did not return a proper response! :rage5:"
+				return
+			res = JSON.parse body
+			console.log(JSON.stringify(res, null, ' '))
 
-            if coin[symbol] == undefined
-              msg.send "There was a problem. :explode: Did you use the symbol? Is it in CoinMarketCap's Top 150?"
-            else
-              msg.send "*" + coin[symbol].name + " ("+ symbol + ")*" +
-              "\nPrice (USD): $" + coin[symbol].price_usd +
-              "\n1hr Change: " + coin[symbol].change_1hr + "%" +
-              "\n24hr Change: " + coin[symbol].change_24hr + "%"
+			label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000)
+			console.time(label)
 
-    robot.respond /(.*) chart/i, (msg) ->
-      if(webcap == undefined)
-        msg.send("We were unable to load the chart at this time.")
-      else
-        msg.send("Let me check...")
-        query = msg.match[1]
-        channel = msg.message.rawMessage.channel
-        symbol = query.toUpperCase()
-        file = "temp/" + symbol + ".png"
-        chart_url = "http://www.cryptocurrencychart.com/coin/" + symbol
-        api_url = "https://slack.com/api/files.upload"
-        token = process.env.HUBOT_SLACK_TOKEN
+			coin = {}
+			for row in res
+				coin[row.symbol] = {
+					name: row.name,
+					id: row.id,
+					symbol: row.symbol,
+					rank: row.rank,
+					price_usd: row.price_usd,
+					change_1hr: row.percent_change_1h,
+					change_24hr: row.percent_change_24h,
+					available_supply: row.available_supply,
+					total_supply: row.total_supply
+				}
 
-        webcap chart_url, file, options, (err) ->
-          try
-           options =
-              method: 'POST'
-              url: api_url
-              headers:
-                'cache-control': 'no-cache'
-                'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
-              formData:
-                token: token
-                file:
-                  value: fs.createReadStream(file)
-                  options:
-                    filename: symbol + "_" + Date.now() + ".png"
-                    contentType: null
-                channels: channel
-                title: symbol + ' Chart'
-            request options, (error, response, body) ->
-              if error
-                throw new Error(error)
-          catch error
-            console.log(error)
-            msg.send("Error: Unable to attach the chart image. Please check the logs. :explode:")
+			console.timeEnd(label)
+
+			if coin[symbol] == undefined
+				msg.send "I am unable to locate a price for that coin. Either you don't know what you're talking about or @jonfairbanks can't code. :explode:"
+			else
+				if(coin[symbol].change_1hr > 0)
+					color = "#36a64f" # Green
+				else
+					color = "#d8000c" # Red
+
+				if(!coin[symbol].available_supply)
+					available_supply = 'Data Unavailable'
+				else
+					available_supply = formatCurrency(coin[symbol].available_supply)
+					available_supply = available_supply.replace(/\.00$/,'')
+
+				if(!coin[symbol].total_supply)
+					total_supply = 'Data Unavailable'
+				else
+					total_supply = formatCurrency(coin[symbol].total_supply)
+					total_supply = total_supply.replace(/\.00$/,'')
+
+				if(coin[symbol].change_1hr == null)
+					change_1hr = 'Data Unavailable'
+				else
+					change_1hr = coin[symbol].change_1hr + '%'
+
+				if(coin[symbol].change_24hr == null)
+					change_24hr = 'Data Unavailable'
+				else
+					change_24hr = coin[symbol].change_24hr + '%'
+
+				ts = Math.floor(new Date() / 1000)
+
+				msgBody = {
+					"attachments": [
+						{
+							"fallback": "Price Data for " + coin[symbol].name + " from CoinMarketCap",
+							"color": color,
+							"title": coin[symbol].name + " (" + symbol + ")",
+							"title_link": "https://coinmarketcap.com/currencies/" + coin[symbol].id,
+							"fields": [
+								{
+									"title": "Price (USD)",
+									"value": "$" + formatCurrency(coin[symbol].price_usd),
+									"short": true
+								},
+								{
+									"title": "Market Rank",
+									"value": formatOrdinal(coin[symbol].rank),
+									"short": true
+								},
+								{
+									"title": "1hr Change",
+									"value": change_1hr,
+									"short": true
+								},
+								{
+									"title": "24hr Change",
+									"value": change_24hr,
+									"short": true
+								},
+								{
+									"title": "Available Supply",
+									"value": available_supply,
+									"short": true
+								},
+								{
+									"title": "Total Supply",
+									"value": total_supply,
+									"short": true
+								},
+							],
+							"thumb_url": "https://coincheckup.com/images/coins/" + coin[symbol].id + ".png",
+							"footer": "CoinMarketCap",
+							"footer_icon": "https://cdn1.iconfinder.com/data/icons/money-finance-set-3/512/11-512.png",
+							"ts": ts
+						}
+					]
+				}
+
+				msg.send msgBody

@@ -74,13 +74,13 @@ module.exports = (robot) ->
 				else
 					color = "#d8000c" # Red
 
-				if(!coin[symbol].available_supply || coin[symbol].available_supply == null)
+				if(!coin[symbol].available_supply or !coin[symbol].available_supply?)
 					available_supply = 'Data Unavailable'
 				else
 					available_supply = formatCurrency(coin[symbol].available_supply)
 					available_supply = available_supply.replace(/\.00$/,'')
 
-				if(!coin[symbol].total_supply || coin[symbol].total_supply == null)
+				if(!coin[symbol].total_supply or !coin[symbol].total_supply?)
 					total_supply = 'Data Unavailable'
 				else
 					total_supply = formatCurrency(coin[symbol].total_supply)

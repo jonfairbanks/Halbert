@@ -45,7 +45,7 @@ module.exports = (robot) ->
 				msg.send "The CoinMarketCap API did not return a proper response! :rage5:"
 				return
 			res = JSON.parse body
-			console.log(JSON.stringify(res, null, ' '))
+			#console.log(JSON.stringify(res, null, ' '))
 
 			label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000)
 			console.time(label)
@@ -69,28 +69,38 @@ module.exports = (robot) ->
 			if coin[symbol] == undefined
 				msg.send "I am unable to locate a price for that coin. Either you don't know what you're talking about or @jonfairbanks can't code. :explode:"
 			else
+				###################################
+				console.log(coin[symbol].change_1hr)
 				if(coin[symbol].change_1hr > 0)
 					color = "#36a64f" # Green
 				else
 					color = "#d8000c" # Red
 
+				###################################
+				console.log(coin[symbol].available_supply)
 				if(!coin[symbol].available_supply)
 					available_supply = 'Data Unavailable'
 				else
 					available_supply = formatCurrency(coin[symbol].available_supply)
 					available_supply = available_supply.replace(/\.00$/,'')
 
+				####################################
+				console.log(coin[symbol].total_supply)
 				if(!coin[symbol].total_supply)
 					total_supply = 'Data Unavailable'
 				else
 					total_supply = formatCurrency(coin[symbol].total_supply)
 					total_supply = total_supply.replace(/\.00$/,'')
 
+				####################################
+				console.log(coin[symbol].change_1hr)
 				if(coin[symbol].change_1hr == null)
 					change_1hr = 'Data Unavailable'
 				else
 					change_1hr = coin[symbol].change_1hr + '%'
 
+				####################################
+				console.log(coin[symbol].change_24hr)
 				if(coin[symbol].change_24hr == null)
 					change_24hr = 'Data Unavailable'
 				else

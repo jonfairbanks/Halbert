@@ -46,7 +46,7 @@ module.exports = function(robot) {
 
         coin = {};
         for (i = 0, len = res.length; i < len; i++) {
-          row = res[_i];
+          row = res[i];
           coin[row.symbol] = {
             name: row.name,
             id: row.id,
@@ -136,9 +136,10 @@ module.exports = function(robot) {
               }
             ]
           };
-            msg.send(msgBody);
+          msgBody = 'Response should go here';
+          msg.send(msgBody);
         }
       }
     });
-  }
+  });
 }

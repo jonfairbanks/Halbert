@@ -14,12 +14,16 @@
 #   jonfairbanks
 
 sheits = [
-  "http://i.imgur.com/nv9hR03.gifv",
   "https://www.youtube.com/watch?v=l1dnqKGuezo",
-  "http://www.reactiongifs.com/r/2013/11/The-Wire-SHIT-Clay-Davis.gif",
-  "http://img.pandawhale.com/post-29949-Clay-Davis-SHIT-gif-Imgur-eTgm.gif",
-  "http://img.pandawhale.com/89754-SHEEIT-gif-Clay-Davis-The-Wire-R90q.gif",
-  "http://img.pandawhale.com/84964-Clay-Davis-SHEEIT-meme-demotiv-ejWX.jpeg"
+  "https://i.imgur.com/MO3d7A5.gif",
+  "https://i.imgur.com/NgIqbgy.gifv",
+  "https://i.imgur.com/8qnpIO6.gifv",
+  "https://i.imgur.com/W1Mrt4j.gifv",
+  "https://i.imgur.com/ZA8y1Li.gifv",
+  "https://i.imgur.com/2y2lohe.gif",
+  "https://i.imgur.com/mLOXTGA.gif",
+  "https://i.imgur.com/J2t4fkQ.gifv",
+  "https://i.imgur.com/BtbaJiK.gifv"
 ]
 
 module.exports = (robot) ->

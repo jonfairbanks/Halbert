@@ -39,10 +39,7 @@ module.exports = function(robot) {
       } else {
 
         res = JSON.parse(body);
-        console.log(JSON.stringify(res, null, ' '));
-
-        label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000);
-        console.time(label);
+        //console.log(JSON.stringify(res, null, ' '));
 
         coin = {};
         for (i = 0, len = res.length; i < len; i++) {
@@ -60,10 +57,8 @@ module.exports = function(robot) {
           };
         }
 
-        console.timeEnd(label);
-
         if (coin[symbol] === void 0) {
-          msg.send("I am unable to locate a price for that coin. Either you don't know what you're talking about or @jonfairbanks can't code. :explode:");
+          msg.send("I am unable to locate a price for that coin. Please verify that it exists on CoinMarketCap.");
         } else {
           if (coin[symbol].change_1hr > 0) {
             color = "#36a64f";
@@ -95,7 +90,8 @@ module.exports = function(robot) {
 
           ts = Math.floor(new Date() / 1000);
 
-          msgBody = {
+          msgData = {
+            "channel": msg.message.room,
             "attachments": [
               {
                 "fallback": "Price Data for " + coin[symbol].name + " from CoinMarketCap",
@@ -131,13 +127,11 @@ module.exports = function(robot) {
                 ],
                 "thumb_url": "https://coincheckup.com/images/coins/" + coin[symbol].id + ".png",
                 "footer": "CoinMarketCap",
-                "footer_icon": "https://cdn1.iconfinder.com/data/icons/money-finance-set-3/512/11-512.png",
-                "ts": ts
+                "footer_icon": "https://cdn1.iconfinder.com/data/icons/money-finance-set-3/512/11-512.png"
               }
             ]
-          };
-          msgBody = 'Response should go here';
-          msg.send(msgBody);
+          }
+          robot.adapter.customMessage(msgData);
         }
       }
     });

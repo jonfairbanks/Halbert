@@ -47,8 +47,8 @@ module.exports = (robot) ->
 			res = JSON.parse body
 			#console.log(JSON.stringify(res, null, ' '))
 
-			label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000)
-			console.time(label)
+			#label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000)
+			#console.time(label)
 
 			coin = {}
 			for row in res
@@ -64,7 +64,7 @@ module.exports = (robot) ->
 					total_supply: row.total_supply
 				}
 
-			console.timeEnd(label)
+			#console.timeEnd(label)
 
 			if coin[symbol] == undefined
 				msg.send "I am unable to locate a price for that coin. Either you don't know what you're talking about or @jonfairbanks can't code. :explode:"
@@ -78,7 +78,7 @@ module.exports = (robot) ->
 
 				###################################
 				console.log(coin[symbol].available_supply)
-				if(!coin[symbol].available_supply)
+				if(!!coin[symbol].available_supply)
 					available_supply = 'Data Unavailable'
 				else
 					available_supply = formatCurrency(coin[symbol].available_supply)
@@ -86,7 +86,7 @@ module.exports = (robot) ->
 
 				####################################
 				console.log(coin[symbol].total_supply)
-				if(!coin[symbol].total_supply)
+				if(!!coin[symbol].total_supply)
 					total_supply = 'Data Unavailable'
 				else
 					total_supply = formatCurrency(coin[symbol].total_supply)

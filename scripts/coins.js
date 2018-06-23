@@ -1,48 +1,52 @@
-var formatOrdinal;
 module.exports = function(robot) {
-  var cents, formatCurrency, i, num;
-  formatCurrency = function(num) {};
-  num = num.toString().replace(/\$|\,/g, '');
-  if (isNaN(num)) {
-    num = '0';
-  }
-  num = Math.floor(num * 100 + 0.50000000001);
-  cents = num % 100;
-  num = Math.floor(num / 100).toString();
-  if (cents < 10) {
-    cents = '0' + cents;
-  }
-  i = 0;
-  while (i < Math.floor((num.length - (1 + i)) / 3)) {
-    num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
-    i++;
-  }
-  return num + '.' + cents;
-};
-formatOrdinal = function(n) {
-  var s, v;
-  s = ['th', 'st', 'nd', 'rd'];
-  v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-};
-robot.respond(/(.*) price/i, function(msg) {
-  var symbol, url;
-  symbol = msg.match[1].toUpperCase();
-  url = "https://api.coinmarketcap.com/v1/ticker/?limit=1500";
-  return msg.http(url).headers({
-    Accept: "application/json"
-  }).get()(function(err, res, body) {
-    var available_supply, change_1hr, change_24hr, coin, color, label, msgBody, row, total_supply, ts, _i, _len;
-    if (res.statusCode !== 200) {
-      msg.send("The CoinMarketCap API did not return a proper response! :rage5:");
-      return;
+  var cents, formatCurrency, i, num, formatOrdinal;
+
+  formatCurrency = function(num) {
+    num = num.toString().replace(/\$|\,/g, '');
+    if (isNaN(num)) {
+      num = '0';
+    }
+    num = Math.floor(num * 100 + 0.50000000001);
+    cents = num % 100;
+    num = Math.floor(num / 100).toString();
+    if (cents < 10) {
+      cents = '0' + cents;
+    }
+    i = 0;
+    while (i < Math.floor((num.length - (1 + i)) / 3)) {
+      num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+      i++;
+    }
+    return num + '.' + cents;
+  };
+
+  formatOrdinal = function(n) {
+    var s, v;
+    s = ['th', 'st', 'nd', 'rd'];
+    v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
+  robot.respond(/(.*) price/i, function(msg) {
+    var symbol, url;
+    symbol = msg.match[1].toUpperCase();
+    url = "https://api.coinmarketcap.com/v1/ticker/?limit=1500";
+    return msg.http(url).headers({
+      Accept: "application/json"
+    }).get()(function(err, res, body) {
+      var available_supply, change_1hr, change_24hr, coin, color, label, msgBody, row, total_supply, ts, _i, _len;
+      if (res.statusCode !== 200) {
+        msg.send("The CoinMarketCap API did not return a proper response! :rage5:");
+        return;
     }
     res = JSON.parse(body);
     console.log(JSON.stringify(res, null, ' '));
+
     label = 'Time to Build ' + symbol + ' Data @ ' + Math.floor(new Date() / 1000);
     console.time(label);
+
     coin = {};
-    for (_i = 0, _len = res.length; _i < _len; _i++) {
+    for (i = 0, len = res.length; i < len; i++) {
       row = res[_i];
       coin[row.symbol] = {
         name: row.name,
@@ -56,7 +60,9 @@ robot.respond(/(.*) price/i, function(msg) {
         total_supply: row.total_supply
       };
     }
+
     console.timeEnd(label);
+
     if (coin[symbol] === void 0) {
       return msg.send("I am unable to locate a price for that coin. Either you don't know what you're talking about or @jonfairbanks can't code. :explode:");
     } else {
@@ -87,7 +93,9 @@ robot.respond(/(.*) price/i, function(msg) {
       } else {
         change_24hr = coin[symbol].change_24hr + '%';
       }
+
       ts = Math.floor(new Date() / 1000);
+
       msgBody = {
         "attachments": [
           {
@@ -131,5 +139,6 @@ robot.respond(/(.*) price/i, function(msg) {
       };
       return msg.send(msgBody);
     }
+    });
   });
-});
+}

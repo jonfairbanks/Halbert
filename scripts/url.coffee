@@ -16,16 +16,16 @@
 
 module.exports = (robot) ->
   robot.hear /URL encode( me)? (.*)/i, (msg) ->
-    msg.send encodeURIComponent(msg.match[2])
+    msg.send '```' + encodeURIComponent(msg.match[2]) + '```'
 
   robot.hear /URL decode( me)? (.*)/i, (msg) ->
-    msg.send decodeURIComponent(msg.match[2])
+    msg.send '```' + decodeURIComponent(msg.match[2]) + '```'
 
   robot.hear /URL form encode( me)? (.*)/i, (msg) ->
-    msg.send urlFormEncode(msg.match[2])
+    msg.send '```' + urlFormEncode(msg.match[2]) + '```'
 
   robot.hear /URL form decode( me)? (.*)/i, (msg) ->
-    msg.send urlFormDecode(msg.match[2])
+    msg.send '```' + urlFormDecode(msg.match[2]) + '```'
 
 # url form-data encoding helpers (partially ripped from jshashes npm package)
 urlFormEncode = (str) ->

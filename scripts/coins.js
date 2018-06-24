@@ -127,7 +127,8 @@ module.exports = function(robot) {
                 ],
                 "thumb_url": "https://coincheckup.com/images/coins/" + coin[symbol].id + ".png",
                 "footer": "CoinMarketCap",
-                "footer_icon": "https://cdn1.iconfinder.com/data/icons/money-finance-set-3/512/11-512.png"
+                "footer_icon": "https://cdn1.iconfinder.com/data/icons/money-finance-set-3/512/11-512.png",
+                "ts": ts
               }
             ]
           }

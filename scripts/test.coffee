@@ -18,6 +18,7 @@ module.exports = (robot) ->
 
   robot.respond /debug/, (msg) ->
     console.log Object(msg.message)
+    msg.send '```' + Object(msg.message) + '```'
 
   robot.respond /echo (.*)/, (msg) ->
     console.log(msg.match[1])

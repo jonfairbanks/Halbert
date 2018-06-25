@@ -4,5 +4,6 @@
   "hubot-maps",
   "hubot-redis-brain",
   "hubot-xkcd",
-  "hubot-jokes"
+  "hubot-cron",
+  "hubot-dockerhub"
 ]

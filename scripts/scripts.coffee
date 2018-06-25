@@ -1,5 +1,5 @@
 # Description:
-#   Random test scripts. Can likely be deleted. 
+#   Random test scripts. Can likely be deleted.
 #
 # Dependencies:
 #   None
@@ -65,5 +65,5 @@ module.exports = (robot) ->
    robot.hear /hal/i, (res) ->
      #res.send res.random phrases
 
-   robot.hear /where are you/i, (res) ->
-     res.send "127.0.0.1 :grin:"
+   robot.respond /where are you/i, (res) ->
+     res.send "fairbanks.io :grin:"

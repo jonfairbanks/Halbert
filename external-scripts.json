@@ -6,6 +6,5 @@
   "hubot-xkcd",
   "hubot-uptime",
   "hubot-formatted-crypto",
-  "hubot-cron",
-  "hubot-dockerhub"
+  "hubot-cron"
 ]

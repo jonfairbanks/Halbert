@@ -18,5 +18,5 @@ module.exports = (robot) ->
      url = 'https://isthereanydeal.com/search/?q=' + query +
      res.send "#{url}"
 
-   robot.respond /where u @/i, (res) ->
+   robot.respond /where u at/i, (res) ->
      res.send "fairbanks.io :parrot:"

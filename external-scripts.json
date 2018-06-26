@@ -5,5 +5,7 @@
   "hubot-redis-brain",
   "hubot-xkcd",
   "hubot-uptime",
-  "hubot-formatted-crypto"
+  "hubot-formatted-crypto",
+  "hubot-cron",
+  "hubot-dockerhub"
 ]

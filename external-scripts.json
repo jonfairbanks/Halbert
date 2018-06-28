@@ -4,5 +4,7 @@
   "hubot-maps",
   "hubot-redis-brain",
   "hubot-xkcd",
-  "hubot-jokes"
+  "hubot-uptime",
+  "hubot-formatted-crypto",
+  "hubot-cron"
 ]

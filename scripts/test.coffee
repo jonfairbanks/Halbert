@@ -17,9 +17,7 @@ module.exports = (robot) ->
       msg.send 'You don\'t have permission to do that. :closed_lock_with_key:'
 
   robot.respond /debug/, (msg) ->
-    console.log Object(msg.message)
     msg.send '```' + JSON.stringify(msg.message, null, ' ') + '```'
 
   robot.respond /echo (.*)/, (msg) ->
-    console.log(msg.match[1])
     msg.send msg.match[1]

@@ -1,4 +1,7 @@
 # Halbert
+[![Docker Automated](https://img.shields.io/docker/automated/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
+[![Docker Build](https://img.shields.io/docker/build/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
 
 A Dockerized Slackbot written with Hubot
 <br>

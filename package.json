@@ -10,7 +10,7 @@
     "crypto-js": "^3.1.9-1",
     "hubot": "~2.19.0",
     "hubot-cron": "^0.2.9",
-    "hubot-diagnostics": "0.0.1",
+    "hubot-diagnostics": "1.0.0",
     "hubot-formatted-crypto": "latest",
     "hubot-google-translate": "~0.2.1",
     "hubot-help": "~0.1.3",

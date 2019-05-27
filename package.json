@@ -5,7 +5,7 @@
   "author": "Jon Fairbanks <https://github.com/jonfairbanks>",
   "description": "A simple helpful robot for Slack",
   "dependencies": {
-    "@slack/client": "^3.6.0",
+    "@slack/client": "^5.0.1",
     "chrono-node": "^0.1.10",
     "crypto-js": "^3.1.9-1",
     "hubot": "~2.19.0",

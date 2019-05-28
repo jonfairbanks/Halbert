@@ -20,7 +20,7 @@
     "hubot-slack": "^4.4.0",
     "hubot-uptime": "latest",
     "hubot-xkcd": "^0.0.5",
-    "jsdom": "11.11.0",
+    "jsdom": "15.1.1",
     "lodash": "^4.17.5",
     "moment": "^2.8.1",
     "moment-timezone": "^0.5.20",

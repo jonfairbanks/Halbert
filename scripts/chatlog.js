@@ -7,59 +7,74 @@
 // Configuration:
 //   Update logsFolder below!
 
-var logsFolder = '\/usr\/src\/hubot\/Logs\/';
+let logsFolder = '\/home\/jonfairbanks\/Logs\/slack\/';
 
-var fs = require('fs');
-var moment = require('moment-timezone');
-var WebClient = require('@slack/client').WebClient;
-var token = process.env.HUBOT_SLACK_TOKEN;
-var streamOpts = null;
+let fs = require('fs');
+let moment = require('moment-timezone');
+let WebClient = require('@slack/client').WebClient;
+let token = process.env.HUBOT_SLACK_TOKEN;
+let streamOpts = null;
 
-var web = new WebClient(token);
+let web = new WebClient(token);
 
 module.exports = function(robot) {
     robot.hear(/(.*)/i, function(msg){
-        var messageText = msg.message.rawMessage.text;
+        let ts = moment.tz("America/Los_Angeles").format('h:mm:ssa z');
+        let messageText = msg.message.rawMessage.text;
+        let userName = "Unknown";
         try{
-            var userName = (msg.message.rawMessage.user.name) ? msg.message.rawMessage.user.name : "Unknown";
+            userName = (msg.message.rawMessage.user.real_name) ? msg.message.rawMessage.user.real_name : "unknown";
         }catch(err){
-            console.log('Error Saving Message to Chat Log: ' + JSON.stringify(msg.message.rawMessage));
-            var userName = "Unknown";
+            console.log('Error Saving Message to Chat Log: ' + err);
         }
-        var userID = msg.message.rawMessage.user.id;
-        var channelName = msg.message.rawMessage.channel.name;
-        var channelID = msg.message.rawMessage.channel.id;
-        var ts = moment.tz(msg.message.rawMessage.user.tz).format('h:mm:ssa z');
-
-        var data = ('[' + channelID + '](' + userName + ' in #' + channelName + ' @ ' + ts + ') \n' + messageText + '\n\n');
-        var savePath = logsFolder + channelName + '.log';
-
-        fs.appendFile(savePath, data, function (err, msg) {
-            if (err) {
-                console.log('Error Saving Message to Chat Log: ' + JSON.stringify(msg.message.rawMessage));
-                throw err;
-            }
-        });
+        let userID = msg.message.rawMessage.user.id;
+        let channelID = msg.message.rawMessage.channel;
+        
+        web.channels.info({ channel: channelID })
+        .then(msg => {
+            if(msg.channel.name.length > 1)
+                var channelName = msg.channel.name
+                if(channelName) {
+                    let data = ('[' + channelID + '](' + userName + ' in #' + channelName + ' @ ' + ts + ') \n' + messageText + '\n\n');
+                    let savePath = logsFolder + channelName + '.log';
+                    fs.appendFile(savePath, data, function (err, msg) {
+                        if (err) {
+                            console.log('Error Saving Message to Chat Log: \n');
+                            throw err;
+                        }
+                    });
+                }
+        })
+        .catch(e => { channelName = userName + "-unknown" })
     });
 
     robot.respond(/chatlog/i, function(msg){
-        if(msg.message.user.is_admin != true) {
+        if(msg.message.user.slack.is_admin != true) {
             msg.send('You don\'t have permission to do that. :closed_lock_with_key:');
         }else {
-            var filePath = logsFolder + msg.message.rawMessage.channel.name + '.log';
-            var streamOpts = {
-                file: fs.createReadStream(filePath),
-                channels: msg.message.room,
-                title: 'Chat Log for #' + msg.message.rawMessage.channel.name
-            };
-
-            web.files.upload('Chat Log', streamOpts, function(err, res) {
-                if (err) {
-                    msg.send('```' + err + '```');
-                } else {
-                    //console.log(res); // Uncomment to see API response
+            console.log(msg.message.rawMessage.channel)
+            let channelID = msg.message.rawMessage.channel;
+            web.channels.info({ channel: channelID })
+            .then(msg => {
+                if(msg.channel.name.length > 1) {
+                    var channelName = msg.channel.name
+                    let filePath = logsFolder + channelName + '.log';
+                    let streamOpts = {
+                        file: fs.createReadStream(filePath),
+                        channels: msg.message.rawMessage.channel,
+                        title: 'Chat Log for #' + channelName
+                    };
+        
+                    web.files.upload('Chat Log', streamOpts, function(err, res) {
+                        if (err) {
+                            msg.send('```' + err + '```');
+                        } else {
+                            //console.log(res); // Uncomment to see API response
+                        }
+                    });
                 }
-            });
+            })
+            .catch(e => { channelName = userName + "-unknown" })
         }
     });
 }

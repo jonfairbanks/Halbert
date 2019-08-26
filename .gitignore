@@ -7,3 +7,4 @@ scripts/lights.coffee.bak
 scripts/restart.js
 scripts/steam.js
 scripts/example.coffee
+hal-slackbot.sh

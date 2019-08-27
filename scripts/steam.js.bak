@@ -1,0 +1,66 @@
+// Description:
+//  Gets details for a Steam user
+//
+// Dependencies:
+//   A Steam API Key: 
+//
+// Configuration:
+//   Update steamAPIKey!
+//
+// Commands:
+//    hal steam * - Get details for the provided Steam user
+'use strict';
+
+var steamAPIKey = '0C1B9C45BF18FF061C3983B767C41A71';
+var steamAPIBase = 'http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/';
+var errorMessage = 'There was an error! :explode: Check the logs.'
+
+var Steam = require('machinepack-steam');
+
+module.exports = function(robot) {  
+    robot.respond(/steam (.*)/i, function(msg){
+        var url = steamAPIBase + '?key=' + steamAPIKey + '&vanityurl=' + msg.match[1];
+        console.log(url);
+        robot.http(url).get()(function(err, res, body) {
+            if(err){
+                msg.send(errorMessage);
+                console.log(err);
+                return;
+            }else{
+                var json = JSON.parse(body);
+                var steamID = json.response.steamid;
+                var status = json.response.status;
+                
+                if(status > 1 || steamID == undefined){
+                    msg.send('I had trouble finding that Steam user. Sorry. :confused:');
+                    return;
+                }
+                
+                Steam.getRecentlyPlayedGames({  
+                   steamid: steamID,
+                   key: steamAPIKey
+                }).exec({  
+                    error:function (err)   {  
+                        console.log(err);
+                        msg.send(errorMessage);
+                    },
+                    success:function (resp)   {  
+                        var games = {}, i = 1;
+                        for (let row of Array.from(resp.games)) {
+                            games[i] = {
+                                name: row.name,
+                                appid: row.appid,
+                                playtime_2weeks: row.playtime_2weeks,
+                                playtime_forever: row.playtime_forever,
+                                logo: row.img_logo_url
+                            };
+                            i++;
+                        }
+                        
+                        msg.send('```' + JSON.stringify(games, null, ' ') + '```');
+                    },
+                });
+            }
+        });
+    });
+}

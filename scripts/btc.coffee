@@ -1,14 +1,14 @@
 # Description:
-#  Cryptocurrency Price Checker - Bitcoin
+#  Historical Price Checker - Bitcoin
 #
 # Dependencies:
-#   None
+#   Coinbase
 #
 # Configuration:
 #   None
 #
 # Commands:
-#   hal btc historical - returns last year's price for BTC from Coinbase
+#   hubot btc historical - last year's price for BTC from Coinbase
 
 module.exports = (robot) ->
     robot.respond /btc historical/i, (msg) ->

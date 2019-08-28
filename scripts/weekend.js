@@ -1,5 +1,5 @@
 // Description:
-//  Holiday Detector - Sample Hubot Script Written in JS
+//  Weekend Detector - Sample Hubot Script Written in JS
 //
 // Dependencies:
 //   None
@@ -8,7 +8,8 @@
 //   None
 //
 // Commands:
-//   hal is it the weekend?  - returns whether it is the weekend or not
+//   hubot is it the weekend? - should we get excited yet?
+//
 
 module.exports = function(robot) {
     robot.hear(/is it the weekend\s?\?/i, function(msg){

@@ -7,12 +7,11 @@
 # Author:
 #  jonfairbanks
 
-quote_source = 'https://raw.githubusercontent.com/jonfairbanks/the-office-quotes/master/src/quotes/all.json'
+quote_source = 'https://raw.githubusercontent.com/jonfairbanks/the-office-quotes/master/src/quotes/all.json' # This repo is suddenly missing?
 
 sendMsg = (res, body) ->
   # ** Get/Parse the Quote Data **
   data = JSON.parse body
-  #console.log(JSON.stringify(data)) # Enable for Debugging
 
   # ** Find and Build a Random Quote **
   length = data.length

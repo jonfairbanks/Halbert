@@ -8,9 +8,10 @@
 #   None
 #
 # Commands:
-#   hal radar <state> - returns current radar for the requested state (US, CA, IA, NE, SD supported at this time)
+#   hubot radar <state> - returns current radar for the requested state (US, CA, IA, NE, SD supported at this time)
+#
 
-# There has to be a better way to get these
+# TODO: There has to be a better way to get these
 images = {
     US: "https://icons.wxug.com/data/weather-maps/radar/united-states/united-states-current-radar-animation.gif",
     CA: "https://icons.wxug.com/data/weather-maps/radar/united-states/bakersfield-california-region-current-radar-animation.gif",

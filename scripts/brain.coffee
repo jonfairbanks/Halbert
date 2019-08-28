@@ -1,8 +1,10 @@
 # Description:
-#  Just a bunch o' stuff...
+#  Save quick notes in Hal's Redis brain :)
 #
 # Commands:
-#  hubot test - run this test script
+#  hubot save X as Y - Save a quick note into Hal's Brain
+#  hubot load X - Load a previous note from Hal's Brain
+#  hubot delete X - Delete a previous note from Hal's Brain
 #
 # Author:
 #  jonfairbanks
@@ -18,13 +20,10 @@ module.exports = (robot) ->
         if data != null
             msg.send data
         else
-            msg.send "Sorry, I got nothin'. :think-hard:"
+            msg.send "Sorry, I got nothin'. :thinky:"
         
     robot.respond /remove (.*)/i, (msg) ->
         query = msg.match[1]
         upper = query.toUpperCase()
         robot.brain.set(upper, null)
-        msg.send 'Ok, I deleted the `' + msg.match[1] + '` entry. :no_entry:' 
-        
-    robot.respond /brain/i, (msg) -> 
-        msg.send "```" + JSON.stringify(robot.brain.data, null, ' ') + "```"
+        msg.send 'Ok, I deleted the `' + msg.match[1] + '` entry. :no_entry:'

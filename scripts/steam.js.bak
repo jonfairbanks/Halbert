@@ -8,7 +8,7 @@
 //   Update steamAPIKey!
 //
 // Commands:
-//    hal steam * - Get details for the provided Steam user
+//    hubot steam * - Get details for the provided Steam user
 'use strict';
 
 var steamAPIKey = '0C1B9C45BF18FF061C3983B767C41A71';

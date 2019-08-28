@@ -7,3 +7,4 @@ scripts/restart.js
 scripts/steam.js
 scripts/example.coffee
 hal-slackbot.sh
+.hubot_history

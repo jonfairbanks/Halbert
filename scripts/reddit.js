@@ -5,22 +5,31 @@
 //   A Reddit client ID, secret and refresh token
 //
 // Configuration:
-//   Update X, Y and Z
+//   Pass a valid environment variable for:
+//   - HUBOT_REDDIT_CLIENT_ID
+//   - HUBOT_REDDIT_CLIENT_SECRET
+//   - HUBOT_REDDIT_REFRESH_TOKEN
+//
+//   Optional env variables:
+//   - HUBOT_REDDIT_POST_LIMIT: How many posts should Reddit display?
+//   - HUBOT_REDDIT_BASE_URL: Base URL for Reddit
 //
 // Commands:
-//    hal reddit (*) - Get a list of top Reddit posts
+//    hubot reddit (*) - Get a list of top Reddit posts
+//
+
 'use strict';
 
-var defaultPostLimit = 5; // If you go over 15, the message may become too long
-var reddit_base = 'https://www.reddit.com';
+var defaultPostLimit = process.env.HUBOT_REDDIT_POST_LIMIT || 5; // If you go over 15, the message may become too long
+var reddit_base = process.env.HUBOT_REDDIT_BASE_URL || 'https://www.reddit.com';
 var errorMessage = 'It looks like there was an error. :explode: Check the logs.';
 
 var snoowrap = require('snoowrap');
 var r = new snoowrap({
-    userAgent: 'Reddit via Slack',
-    clientId: 'QSzK7-MEGhVnVg',
-    clientSecret: '9L5-jmBSjIlqK1A4GO_JRFGKW-I',
-    refreshToken: '15920890-6rJ0y_1-shIdMXfkj4NkYZtXU-w'
+    userAgent: process.env.HUBOT_REDDIT_USER_AGENT,
+    clientId: process.env.HUBOT_REDDIT_CLIENT_ID,
+    clientSecret: process.env.HUBOT_REDDIT_CLIENT_SECRET,
+    refreshToken: process.env.HUBOT_REDDIT_REFRESH_TOKEN
 });
 
 var compare = function(a, b) {
@@ -93,16 +102,6 @@ module.exports = function(robot) {
     });
     
     robot.hear(/\/r\/([^\s/]+)/i, function(msg){
-        if(msg.match[1]) {
-            var subreddit = msg.match[1];
-            var link = reddit_base + '/r/' + subreddit;
-            var text = '<' + link + '| /r/' + subreddit + ' on Reddit> :reddit:';
-            var finalMsg = {text: text, unfurl_links: false};
-            msg.send(finalMsg);   
-        }
-    });
-    
-    robot.hear(/\st\/([^\s/]+)/i, function(msg){
         if(msg.match[1]) {
             var subreddit = msg.match[1];
             var link = reddit_base + '/r/' + subreddit;

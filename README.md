@@ -23,7 +23,7 @@ If you do not want to connect to the container and just want to run it, use daem
 --name halbert jonfairbanks/halbert
 ```
 
-The `logs/` volume mount can be moved as you see fit, but is required if you want hubot-chatlog files to persist container updates, reboots, etc.
+The `logs/` volume mount can be moved as you see fit, but is required if you want [hubot-chatlog](https://www.npmjs.com/package/hubot-chatlog) files to persist container updates, reboots, etc.
 
 ### Pre-installed hubot packages
 - [hubot-diagnostics](https://www.npmjs.com/package/hubot-diagnostics)
@@ -78,6 +78,6 @@ Docker ports can be exposed to extend functionality, such as with webhooks, usin
 
 
 ### Resources
-- ![Hubot Documentation](https://hubot.github.com/docs/)
-- ![Slack Developer Kit for Hubot](https://slack.dev/hubot-slack/)
-- ![Slack API Test](https://api.slack.com/methods/api.test)
+- [Hubot Documentation](https://hubot.github.com/docs/)
+- [Slack Developer Kit for Hubot](https://slack.dev/hubot-slack/)
+- [Slack API Test](https://api.slack.com/methods/api.test)

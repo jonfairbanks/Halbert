@@ -17,7 +17,8 @@ A Slackbot token pre-configured for your team is required. [Checkout the Slack d
 ### Start the Container Headless
 If you do not want to connect to the container and just want to run it, use daemon mode with **-d**:
 
-```(sudo) docker run -d \
+```
+(sudo) docker run -d \
 -e HUBOT_SLACK_TOKEN=<token> \
 -v /logs:/app/logs \
 --name halbert jonfairbanks/halbert
@@ -49,6 +50,8 @@ The `logs/` volume mount can be moved as you see fit, but is required if you wan
 The output of hubot startup and any console.log() within your scripts is directed to container logs and can be viewed within Docker.
 
 `(sudo) docker logs <container name>`
+
+Unless specifically disabled, halbert also maintains a chatlog for each channel it is invited to. These logs are stored in the path specified on container launch and can also be viewed within Slack using the `chatlog` command.
 
 
 ### Helpful Docker Commands for Removing/Updating Halbert

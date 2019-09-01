@@ -26,10 +26,10 @@ var errorMessage = 'It looks like there was an error. :explode: Check the logs.'
 
 var snoowrap = require('snoowrap');
 var r = new snoowrap({
-    userAgent: process.env.HUBOT_REDDIT_USER_AGENT,
-    clientId: process.env.HUBOT_REDDIT_CLIENT_ID,
-    clientSecret: process.env.HUBOT_REDDIT_CLIENT_SECRET,
-    refreshToken: process.env.HUBOT_REDDIT_REFRESH_TOKEN
+    userAgent: process.env.HUBOT_REDDIT_USER_AGENT || "Reddit via Slack",
+    clientId: process.env.HUBOT_REDDIT_CLIENT_ID || null,
+    clientSecret: process.env.HUBOT_REDDIT_CLIENT_SECRET || null,
+    refreshToken: process.env.HUBOT_REDDIT_REFRESH_TOKEN || null
 });
 
 var compare = function(a, b) {

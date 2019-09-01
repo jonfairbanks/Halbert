@@ -6,3 +6,5 @@ scripts/lights.coffee
 scripts/lights.coffee.bak
 scripts/restart.js
 scripts/steam.js
+.hubot_history
+hal-slackbot.sh

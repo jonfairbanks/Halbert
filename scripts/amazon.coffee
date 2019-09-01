@@ -2,7 +2,7 @@
 #  Amazon Link Helper
 #
 # Commands:
-#  hubot amazon me * - Search for an item on Amazon
+#  hubot amazon me X - Search for an item on Amazon
 #
 # Author:
 #  jonfairbanks

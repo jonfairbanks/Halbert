@@ -2,9 +2,9 @@
 #  Save quick notes in Hal's Redis brain :)
 #
 # Commands:
-#  hubot save X as Y - Save a quick note into Hal's Brain
-#  hubot load X - Load a previous note from Hal's Brain
-#  hubot delete X - Delete a previous note from Hal's Brain
+#  hubot save X as Y - Save a quick note into Hal's brain
+#  hubot load X - Load a previous note from Hal's brain
+#  hubot delete X - Delete a previous note from Hal's brain
 #
 # Author:
 #  jonfairbanks

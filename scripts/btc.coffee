@@ -1,5 +1,5 @@
 # Description:
-#  Historical Price Checker - Bitcoin
+#   Historical Price Checker - Bitcoin
 #
 # Dependencies:
 #   Coinbase

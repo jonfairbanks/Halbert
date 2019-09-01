@@ -15,7 +15,7 @@
 //   - HUBOT_REDDIT_BASE_URL: Base URL for Reddit
 //
 // Commands:
-//    hubot reddit (*) - Get a list of top Reddit posts
+//    hubot reddit X - Get a list of top Reddit posts
 //
 
 'use strict';

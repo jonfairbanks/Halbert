@@ -10,7 +10,7 @@
 //   - HUBOT_LOG_TITLE -- What should the log be titled once uploaded?
 //
 // Commands:
-//   None   
+//   
 //
 
 var filePath = process.env.HUBOT_LOG_FILE_PATH || '\/home\/jonfairbanks\/Logs\/hubot.log'; // Special characters need to be escaped! (Ex: \/var\/log\/syslog)

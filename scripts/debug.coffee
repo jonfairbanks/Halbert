@@ -2,7 +2,7 @@
 #  Just a bunch o' stuff...
 #
 # Commands:
-#  None
+#
 #
 # Author:
 #  jonfairbanks

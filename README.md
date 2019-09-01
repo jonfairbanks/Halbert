@@ -2,6 +2,9 @@
 [![Docker Automated](https://img.shields.io/docker/automated/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
 [![Docker Build](https://img.shields.io/docker/build/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
+![GitHub top language](https://img.shields.io/github/languages/top/jonfairbanks/halbert.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/jonfairbanks/halbert.svg)
+![License](https://img.shields.io/github/license/jonfairbanks/halbert.svg?style=flat)
 
 A Dockerized Slackbot written with Hubot
 <br>

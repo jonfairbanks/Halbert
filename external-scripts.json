@@ -1,10 +1,11 @@
 [
+  "hubot-diagnostics",
   "hubot-help",
-  "hubot-google-translate",
   "hubot-maps",
   "hubot-redis-brain",
-  "hubot-xkcd",
   "hubot-uptime",
-  "hubot-formatted-crypto",
-  "hubot-cron"
+  "hubot-chatlog",
+  "hubot-xkcd",
+  "hubot-base64",
+  "hubot-sha1"
 ]

@@ -1,33 +1,42 @@
 {
-  "name": "halbert-slackbot",
+  "name": "halbert",
   "version": "2.0.0",
-  "private": true,
-  "author": "Jon Fairbanks <https://github.com/jonfairbanks>",
-  "description": "A simple helpful robot for Slack",
+  "private": false,
+  "license": "MIT",
+  "author": "Jon Fairbanks <fairplay89@gmail.com>",
+  "description": "A production ready Slackbot written with Hubot",
   "dependencies": {
-    "@slack/client": "^4.3.1",
-    "chrono-node": "^0.1.10",
-    "crypto-js": "^3.1.9-1",
-    "hubot": "~2.19.0",
-    "hubot-cron": "^0.2.9",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-formatted-crypto": "latest",
-    "hubot-google-translate": "~0.2.1",
-    "hubot-help": "~0.1.3",
+    "@slack/web-api": "^5.1.0",
+    "hubot": "^3.3.2",
+    "hubot-base64": "^1.0.1",
+    "hubot-chatlog": "^1.0.3",
+    "hubot-diagnostics": "^1.0.0",
+    "hubot-help": "^1.0.1",
     "hubot-maps": "0.0.3",
-    "hubot-redis-brain": "0.0.4",
-    "hubot-scripts": "~2.17.2",
-    "hubot-slack": "^4.5.1",
-    "hubot-uptime": "latest",
-    "hubot-xkcd": "^0.0.5",
-    "jsdom": "11.11.0",
-    "lodash": "^2.4.1",
-    "moment": "^2.8.1",
-    "moment-timezone": "^0.5.20",
-    "snoowrap": "^1.15.2",
-    "underscore": "1.3.3"
+    "hubot-redis-brain": "^1.0.0",
+    "hubot-restart": "^1.1.0",
+    "hubot-scripts": "^2.17.2",
+    "hubot-sha1": "^1.0.3",
+    "hubot-slack": "^4.7.1",
+    "hubot-uptime": "^1.0.1",
+    "hubot-xkcd": "0.0.5",
+    "moment-timezone": "^0.5.26",
+    "snoowrap": "^1.19.0"
   },
   "engines": {
-    "node": "8.10.x"
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonfairbanks/Halbert.git"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "co": "^4.6.0",
+    "eslint": "^6.3.0",
+    "hubot-test-helper": "^1.9.0"
   }
 }

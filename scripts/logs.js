@@ -5,17 +5,18 @@
 //   None
 //
 // Configuration:
-//   Update filePath, displayName and mySlackUsername variables below. 
+//   Pass a valid environment variable for:
+//   - HUBOT_LOG_FILE_PATH -- Where is the file you want to upload to Slack?
+//   - HUBOT_LOG_TITLE -- What should the log be titled once uploaded?
 //
 // Commands:
-//   hal logs - upload a copy of the pre-defined log file
+//   
+//
 
-var filePath = '\/home\/jonfairbanks\/Logs\/hubot.log'; // Special characters need to be escaped! (Ex: \/var\/log\/syslog)
-var displayName = 'Halbert Logs';
-var mySlackUsername = 'jonfairbanks';
+var filePath = process.env.HUBOT_LOG_FILE_PATH || '\/home\/jonfairbanks\/Logs\/hubot.log'; // Special characters need to be escaped! (Ex: \/var\/log\/syslog)
 
 var fs = require('fs');
-var WebClient = require('@slack/client').WebClient;
+var WebClient = require('@slack/web-api').WebClient;
 var token = process.env.HUBOT_SLACK_TOKEN;
 var streamOpts = null;
 
@@ -23,16 +24,16 @@ var web = new WebClient(token);
 
 module.exports = function(robot) {
     robot.respond(/logs/i, function(msg){
-        if(msg.message.user.is_admin != true) {
+        if(msg.message.user.slack.is_admin != true) {
             msg.send('You don\'t have permission to do that. :closed_lock_with_key:');
         }else {
-            var streamOpts = {
+            streamOpts = {
                 file: fs.createReadStream(filePath),
                 channels: msg.message.room,
-                title: displayName
+                title: process.env.HUBOT_LOG_TITLE || 'Hubot Logs'
             };
             
-            web.files.upload(displayName, streamOpts, function(err, res) {
+            web.files.upload(streamOpts, function(err, res) {
                 if (err) {
                     msg.send('```' + err + '```');
                 } else {

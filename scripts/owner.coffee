@@ -2,14 +2,15 @@
 #  Display Hal Ownership and Source Code Details
 #
 # Commands:
-#  hal owner - shows @hal's owner
-#  hal source code - shows @hal's source code
+#  hubot owner - shows @hal's owner
+#  hubot source code - shows @hal's source code
 #
 # Configuration:
 #  Update your ownership and soruce code details below.
 #
 # Author:
 #  jonfairbanks
+#
 
 module.exports = (robot) ->
     robot.respond /owner/i, (res) ->

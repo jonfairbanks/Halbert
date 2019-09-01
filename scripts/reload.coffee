@@ -12,6 +12,7 @@
 #
 # Author:
 #   spajus
+#
 
 Fs       = require 'fs'
 Path     = require 'path'

@@ -1,14 +1,14 @@
 # Description:
-#  Cryptocurrency Price Checker - Ethereum
+#  Historical Price Checker - Ethereum
 #
 # Dependencies:
-#   None
+#   Coinbase
 #
 # Configuration:
 #   None
 #
 # Commands:
-#   hal eth historical - returns last year's price for ETH from Coinbase
+#   hal eth historical - last year's price for ETH from Coinbase
 
 module.exports = (robot) ->
     robot.respond /eth historical/i, (msg) ->

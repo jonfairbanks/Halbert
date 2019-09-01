@@ -9,7 +9,7 @@
 
 var fs = require('fs');
 var moment = require('moment-timezone');
-var WebClient = require('@slack/client').WebClient;
+var WebClient = require('@slack/web-api').WebClient;
 var token = process.env.HUBOT_SLACK_TOKEN;
 var streamOpts = null;
 

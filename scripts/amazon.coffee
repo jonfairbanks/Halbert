@@ -2,12 +2,12 @@
 #  Amazon Link Helper
 #
 # Commands:
-#  hubot amazon me * - Search on Amazon
+#  hubot amazon me X - Search for an item on Amazon
 #
 # Author:
 #  jonfairbanks
 
-amazonBase = 'https://smile.amazon.com/s/field-keywords='
+amazonBase = 'https://smile.amazon.com/s?k='
 
 toTitleCase = (str) ->
   str.replace /\w\S*/g, (txt) ->

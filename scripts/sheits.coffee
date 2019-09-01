@@ -1,6 +1,5 @@
 # Description:
 #   When you get some bad news sometimes you got to let it out.
-#   Version 2.0 - Fixed Image Sources
 #   
 # Dependencies:
 #   None
@@ -9,6 +8,7 @@
 #   None
 #
 # Commands:
+#
 #
 # Author:
 #   jonfairbanks

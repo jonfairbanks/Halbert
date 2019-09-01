@@ -10,8 +10,6 @@
 # Author:
 #   jonfairbanks
 
-token = process.env.HUBOT_SLACK_TOKEN
-
 module.exports = (robot) ->
   robot.hear /Larry|larry|Curb|curb/i, (msg) ->
     robot.adapter.client.web.reactions.add('curb', {channel: msg.message.room, timestamp: msg.message.id})
@@ -24,4 +22,3 @@ module.exports = (robot) ->
     
   robot.hear /(?:^|\W)maga(?:$|\W)/i, (msg) ->
     robot.adapter.client.web.reactions.add('mueller', {channel: msg.message.room, timestamp: msg.message.id})
-   

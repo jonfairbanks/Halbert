@@ -4,7 +4,6 @@
   "hubot-maps",
   "hubot-redis-brain",
   "hubot-uptime",
-  "hubot-darksky",
   "hubot-chatlog",
   "hubot-xkcd",
   "hubot-base64",

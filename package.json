@@ -30,7 +30,13 @@
     "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/jonfairbanks/Halbert.git"
+    "type": "git",
+    "url": "https://github.com/jonfairbanks/Halbert.git"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "co": "^4.6.0",
+    "eslint": "^6.3.0",
+    "hubot-test-helper": "^1.9.0"
   }
 }

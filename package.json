@@ -25,5 +25,12 @@
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "scripts": {
+    "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/jonfairbanks/Halbert.git"
   }
 }

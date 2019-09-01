@@ -2,6 +2,7 @@
   "name": "halbert",
   "version": "2.0.0",
   "private": false,
+  "license": "MIT",
   "author": "Jon Fairbanks <fairplay89@gmail.com>",
   "description": "A production ready Slackbot written with Hubot",
   "dependencies": {

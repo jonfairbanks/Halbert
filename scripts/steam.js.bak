@@ -11,7 +11,7 @@
 //    hubot steam * - Get details for the provided Steam user
 'use strict';
 
-var steamAPIKey = '0C1B9C45BF18FF061C3983B767C41A71';
+var steamAPIKey = process.env.HUBOT_STEAM_API_KEY;
 var steamAPIBase = 'http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/';
 var errorMessage = 'There was an error! :explode: Check the logs.'
 
@@ -29,7 +29,7 @@ module.exports = function(robot) {
             }else{
                 var json = JSON.parse(body);
                 var steamID = json.response.steamid;
-                var status = json.response.status;
+                var status = json.response.success;
                 
                 if(status > 1 || steamID == undefined){
                     msg.send('I had trouble finding that Steam user. Sorry. :confused:');

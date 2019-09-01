@@ -76,3 +76,8 @@ Docker ports can be exposed to extend functionality, such as with webhooks, usin
 
 `-p 8080:8080 (<External Port>:<Internal Docker Port>)`
 
+
+### Resources
+- ![Hubot Documentation](https://hubot.github.com/docs/)
+- ![Slack Developer Kit for Hubot](https://slack.dev/hubot-slack/)
+- ![Slack API Test](https://api.slack.com/methods/api.test)

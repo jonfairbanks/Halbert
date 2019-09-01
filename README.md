@@ -26,15 +26,15 @@ If you do not want to connect to the container and just want to run it, use daem
 The `logs/` volume mount can be moved as you see fit, but is required if you want hubot-chatlog files to persist container updates, reboots, etc.
 
 ### Pre-installed hubot packages
-- ![hubot-diagnostics](https://www.npmjs.com/package/hubot-diagnostics)
-- ![hubot-help](https://www.npmjs.com/package/hubot-help)
-- ![hubot-maps](https://www.npmjs.com/package/hubot-maps)
-- ![hubot-redis-brain](https://www.npmjs.com/package/hubot-redis-brain)
-- ![hubot-uptime](https://www.npmjs.com/package/hubot-uptime)
-- ![hubot-chatlog](https://www.npmjs.com/package/hubot-chatlog)
-- ![hubot-xkcd](https://www.npmjs.com/package/hubot-xkcd)
-- ![hubot-base64](https://www.npmjs.com/package/hubot-base64)
-- ![hubot-sha1](https://www.npmjs.com/package/hubot-sha1)
+- [hubot-diagnostics](https://www.npmjs.com/package/hubot-diagnostics)
+- [hubot-help](https://www.npmjs.com/package/hubot-help)
+- [hubot-maps](https://www.npmjs.com/package/hubot-maps)
+- [hubot-redis-brain](https://www.npmjs.com/package/hubot-redis-brain)
+- [hubot-uptime](https://www.npmjs.com/package/hubot-uptime)
+- [hubot-chatlog](https://www.npmjs.com/package/hubot-chatlog)
+- [hubot-xkcd](https://www.npmjs.com/package/hubot-xkcd)
+- [hubot-base64](https://www.npmjs.com/package/hubot-base64)
+- [hubot-sha1](https://www.npmjs.com/package/hubot-sha1)
 - Other experimental scripts can be found in the **scripts/** directory.
 
 

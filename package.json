@@ -37,7 +37,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "co": "^4.6.0",
-    "coffee-script": "^1.12.7",
+    "coffeescript": "^2.4.1",
     "eslint": "^6.3.0",
     "hubot-test-helper": "^1.9.0"
   }

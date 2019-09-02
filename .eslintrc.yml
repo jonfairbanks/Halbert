@@ -4,6 +4,3 @@ rules:
   linebreak-style: 0
   max-len: 0
   func-names: 0
-plugins: [
-  coffeescript
-]

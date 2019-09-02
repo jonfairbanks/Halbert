@@ -1,3 +1,4 @@
+node_modules
 bin/.hubot_history
 scripts/options.js
 scripts/clean.js

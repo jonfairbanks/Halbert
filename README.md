@@ -84,3 +84,4 @@ Docker ports can be exposed to extend functionality, such as with webhooks, usin
 - [Hubot Documentation](https://hubot.github.com/docs/)
 - [Slack Developer Kit for Hubot](https://slack.dev/hubot-slack/)
 - [Slack API Test](https://api.slack.com/methods/api.test)
+- [Testing Hubot Scripts](https://hubot.github.com/docs/scripting/#testing-hubot-scripts)

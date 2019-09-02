@@ -39,7 +39,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "co": "^4.6.0",
-    "coffeescript": "^2.4.1",
+    "coffee-script": "^1.12.7",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-coffeescript": "^1.0.0",

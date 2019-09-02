@@ -28,8 +28,8 @@
   },
   "scripts": {
     "test": "clear && mocha --compilers 'coffee:coffeescript/register' test/*",
-    "lint": "./node_modules/eslint/bin/eslint.js .",
-    "lint-fix": "./node_modules/eslint/bin/eslint.js . --fix"
+    "lint": "clear && ./node_modules/eslint/bin/eslint.js .",
+    "lint-fix": "clear && ./node_modules/eslint/bin/eslint.js . --fix"
   },
   "repository": {
     "type": "git",

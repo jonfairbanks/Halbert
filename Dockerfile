@@ -25,7 +25,7 @@ ENV NODE_ENV=development
 ENV PATH=/app/node_modules/.bin:$PATH
 RUN npm install --only=development --no-optional --silent && npm cache clean --force > "/dev/null" 2>&1
 ENTRYPOINT ["/tini", "--"]
-CMD ["sh", "-c", "/app/bin/hubot", "--adapter slack"]
+CMD ["sh", "-c", "/app/bin/hubot --adapter slack"]
 
 # Source
 FROM base as source
@@ -51,4 +51,4 @@ RUN /microscanner $MICROSCANNER_TOKEN --continue-on-failure
 # Production ENV
 FROM source as prod
 ENTRYPOINT ["/tini", "--"]
-CMD ["sh", "-c", "./bin/hubot", "--adapter slack" ]
+CMD ["sh", "-c", "./bin/hubot --adapter slack" ]

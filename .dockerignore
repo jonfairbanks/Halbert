@@ -13,4 +13,3 @@ logo.*
 *.bmpr
 *.sample
 .env*
-test/*

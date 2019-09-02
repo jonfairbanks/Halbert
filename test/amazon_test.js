@@ -1,12 +1,13 @@
 const co     = require('co');
+const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 const Helper = require('hubot-test-helper');
 
 const helper = new Helper('../scripts/amazon.coffee');
-expect.use(chaiHttp);
+chai.use(chaiHttp);
 
-describe('Amazon helper', function() {
+describe('Amazon:', function() {
   beforeEach(function() {
     this.room = helper.createRoom();
   });
@@ -29,9 +30,8 @@ describe('Amazon helper', function() {
             "unfurl_links": false
         }]
       ]);
-      expect.request(app)
-      .put('/user/me')
-      .send({ password: '123', confirmPassword: '123' })
+      chai.request('https://smile.amazon.com')
+      .get('/s?k=Golf Balls')
       .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);

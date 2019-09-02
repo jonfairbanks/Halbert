@@ -27,7 +27,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "test": "clear && mocha --compilers 'coffee:coffeescript/register' test/*",
+    "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*",
     "lint": "clear && ./node_modules/eslint/bin/eslint.js .",
     "lint-fix": "clear && ./node_modules/eslint/bin/eslint.js . --fix"
   },

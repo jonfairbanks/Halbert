@@ -1,0 +1,6 @@
+extends: airbnb-base
+rules:
+  eol-last: 0
+  linebreak-style: 0
+  max-len: 0
+  func-names: 0

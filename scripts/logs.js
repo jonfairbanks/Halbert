@@ -10,36 +10,37 @@
 //   - HUBOT_LOG_TITLE -- What should the log be titled once uploaded?
 //
 // Commands:
-//   
+//
 //
 
-var filePath = process.env.HUBOT_LOG_FILE_PATH || '\/home\/jonfairbanks\/Logs\/hubot.log'; // Special characters need to be escaped! (Ex: \/var\/log\/syslog)
+const filePath = process.env.HUBOT_LOG_FILE_PATH || '/home/jonfairbanks/Logs/hubot.log'; // Special characters need to be escaped! (Ex: \/var\/log\/syslog)
 
-var fs = require('fs');
-var WebClient = require('@slack/web-api').WebClient;
-var token = process.env.HUBOT_SLACK_TOKEN;
-var streamOpts = null;
+const fs = require('fs');
+const { WebClient } = require('@slack/web-api');
 
-var web = new WebClient(token);
+const token = process.env.HUBOT_SLACK_TOKEN;
+let streamOpts = null;
 
-module.exports = function(robot) {
-    robot.respond(/logs/i, function(msg){
-        if(msg.message.user.slack.is_admin != true) {
-            msg.send('You don\'t have permission to do that. :closed_lock_with_key:');
-        }else {
-            streamOpts = {
-                file: fs.createReadStream(filePath),
-                channels: msg.message.room,
-                title: process.env.HUBOT_LOG_TITLE || 'Hubot Logs'
-            };
-            
-            web.files.upload(streamOpts, function(err, res) {
-                if (err) {
-                    msg.send('```' + err + '```');
-                } else {
-                    //console.log(res); // Uncomment to see API response
-                }
-            });
+const web = new WebClient(token);
+
+module.exports = function (robot) {
+  robot.respond(/logs/i, (msg) => {
+    if (msg.message.user.slack.is_admin !== true) {
+      msg.send('You don\'t have permission to do that. :closed_lock_with_key:');
+    } else {
+      streamOpts = {
+        file: fs.createReadStream(filePath),
+        channels: msg.message.room,
+        title: process.env.HUBOT_LOG_TITLE || 'Hubot Logs',
+      };
+
+      web.files.upload(streamOpts, (err, res) => { // eslint-disable-line no-unused-vars
+        if (err) {
+          msg.send(`\`\`\`${err}\`\`\``);
+        } else {
+          // console.log(res); // Uncomment to see API response
         }
-    });
-}
+      });
+    }
+  });
+};

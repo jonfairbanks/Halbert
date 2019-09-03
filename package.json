@@ -9,7 +9,7 @@
     "@slack/web-api": "^5.1.0",
     "hubot": "^3.3.2",
     "hubot-base64": "^1.0.1",
-    "hubot-chatlog": "^1.0.3",
+    "hubot-chatlog": "^1.0.5",
     "hubot-diagnostics": "^1.0.0",
     "hubot-help": "^1.0.1",
     "hubot-maps": "0.0.3",

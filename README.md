@@ -85,7 +85,8 @@ Docker ports can be exposed to extend functionality, such as with webhooks, usin
 `-p 8080:8080 (<External Port>:<Internal Docker Port>)`
 
 ### Adding new packages to Hubot
-`docker exec -it halbert npm install hubot-packagename`
+`docker exec -it halbert npm install hubot-packagename --save`
+`docker restart halbert`
 
 Be sure to replace 'hubot-packagename' with the desired package you wish to install.
 _When NPM packages are installed with the name that begins with hubot-*, they will be automatically added to the external-scripts.json file._

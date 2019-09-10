@@ -7,5 +7,6 @@
   "hubot-chatlog",
   "hubot-xkcd",
   "hubot-base64",
-  "hubot-sha1"
+  "hubot-sha1",
+  "hubot-restart"
 ]

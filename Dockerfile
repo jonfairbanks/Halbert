@@ -5,7 +5,7 @@ ENV NODE_ENV=production
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
-RUN apt-get update; apt-get install curl mocha redis git git-core -y
+RUN apt-get update; apt-get install curl mocha redis git git-core jq -y
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 ENV NVM_DIR /usr/local/.nvm
 ENV NODE_VERSION 10.16.3

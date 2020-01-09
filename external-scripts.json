@@ -1,11 +1,13 @@
 [
+  "hubot-base64",
+  "hubot-chatlog",
   "hubot-diagnostics",
   "hubot-help",
   "hubot-maps",
   "hubot-redis-brain",
+  "hubot-restart",
+  "hubot-sha1",
+  "hubot-slack",
   "hubot-uptime",
-  "hubot-chatlog",
-  "hubot-xkcd",
-  "hubot-base64",
-  "hubot-sha1"
+  "hubot-xkcd"
 ]

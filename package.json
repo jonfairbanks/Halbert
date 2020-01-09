@@ -9,12 +9,11 @@
     "@slack/web-api": "^5.1.0",
     "hubot": "^3.3.2",
     "hubot-base64": "^1.0.1",
-    "hubot-chatlog": "^1.0.3",
+    "hubot-chatlog": "^1.0.5",
     "hubot-diagnostics": "^1.0.0",
     "hubot-help": "^1.0.1",
     "hubot-maps": "0.0.3",
     "hubot-redis-brain": "^1.0.0",
-    "hubot-restart": "^1.1.0",
     "hubot-scripts": "^2.17.2",
     "hubot-sha1": "^1.0.3",
     "hubot-slack": "^4.7.1",
@@ -27,7 +26,9 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*"
+    "test": "clear && mocha --compilers 'coffee:coffee-script/register' test/*",
+    "lint": "clear && ./node_modules/eslint/bin/eslint.js .",
+    "lint-fix": "clear && ./node_modules/eslint/bin/eslint.js . --fix"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,8 @@
     "co": "^4.6.0",
     "coffee-script": "^1.12.7",
     "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "hubot-test-helper": "^1.9.0"
   }
 }

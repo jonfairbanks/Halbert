@@ -4,6 +4,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jonfairbanks/halbert.svg)](https://hub.docker.com/r/jonfairbanks/halbert/)
 ![GitHub top language](https://img.shields.io/github/languages/top/jonfairbanks/halbert.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jonfairbanks/halbert.svg)
+![Dependabot Status](https://camo.githubusercontent.com/35a144257b9aec7d472244f972d918c3926d5518/68747470733a2f2f6170692e646570656e6461626f742e636f6d2f6261646765732f7374617475733f686f73743d676974687562267265706f3d79737331342f6d757369637368617265)
 ![License](https://img.shields.io/github/license/jonfairbanks/halbert.svg?style=flat)
 
 A production ready Slackbot written with Hubot
@@ -69,16 +70,27 @@ Additional ENV variables can be passed when starting Docker with the **-e** flag
 
 
 ### Exposing Directories
-Directories within the Docker container can be exposed to the local machine with the **-v** flag.
+Directories within the Docker container can be exposed to the local machine with the **-v** flag with parameter syntax of <docker path>:<local machine path>.
 
-`-v /usr/src/hubot:/hubot (<docker path>:<local machine path>)`
+#### Expose Logs Directory
+`-v /app/logs:/hubot/logs`
 
+#### Expose Scripts Directory
+`-v /app/scripts:/hubot/scripts`
+
+_Note: exposing the entire /app directory may cause a startup failure_
 
 ### Exposing Ports
 Docker ports can be exposed to extend functionality, such as with webhooks, using the **-p** flag.
 
 `-p 8080:8080 (<External Port>:<Internal Docker Port>)`
 
+### Adding new packages to Hubot
+`docker exec -it halbert npm install hubot-packagename --save`
+`docker restart halbert`
+
+Be sure to replace 'hubot-packagename' with the desired package you wish to install.
+_When NPM packages are installed with the name that begins with hubot-*, they will be automatically added to the external-scripts.json file._
 
 ### Resources
 - [Hubot Documentation](https://hubot.github.com/docs/)

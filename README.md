@@ -69,16 +69,27 @@ Additional ENV variables can be passed when starting Docker with the **-e** flag
 
 
 ### Exposing Directories
-Directories within the Docker container can be exposed to the local machine with the **-v** flag.
+Directories within the Docker container can be exposed to the local machine with the **-v** flag with parameter syntax of <docker path>:<local machine path>.
 
-`-v /usr/src/hubot:/hubot (<docker path>:<local machine path>)`
+#### Expose Logs Directory
+`-v /app/logs:/hubot/logs`
 
+#### Expose Scripts Directory
+`-v /app/scripts:/hubot/scripts`
+
+_Note: exposing the entire /app directory may cause a startup failure_
 
 ### Exposing Ports
 Docker ports can be exposed to extend functionality, such as with webhooks, using the **-p** flag.
 
 `-p 8080:8080 (<External Port>:<Internal Docker Port>)`
 
+### Adding new packages to Hubot
+`docker exec -it halbert npm install hubot-packagename --save`
+`docker restart halbert`
+
+Be sure to replace 'hubot-packagename' with the desired package you wish to install.
+_When NPM packages are installed with the name that begins with hubot-*, they will be automatically added to the external-scripts.json file._
 
 ### Resources
 - [Hubot Documentation](https://hubot.github.com/docs/)

@@ -12,6 +12,19 @@ type: Opaque
 data:
   token: <MY_BASE64_ENCODED_SLACK_TOKEN>
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: halbert-pvc
+  namespace: halbert
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 10Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -47,9 +60,9 @@ spec:
               name: hubot-slack-token
               key: token
         volumeMounts:
-          - name: logs
-            mountPath: /app/logs
+          - name: logs-pvc
+            mountPath: /app/logs:z
       volumes:
-        - name: logs
-          hostPath:
-              path: /logs
+        - name: logs-pvc
+          persistentVolumeClaim:
+            claimName: halbert-pvc

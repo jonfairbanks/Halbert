@@ -12,19 +12,6 @@ type: Opaque
 data:
   token: <MY_BASE64_ENCODED_SLACK_TOKEN>
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: halbert-pvc
-  namespace: halbert
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: 10Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:

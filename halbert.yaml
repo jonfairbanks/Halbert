@@ -33,6 +33,8 @@ spec:
         app: halbert
     spec:
       terminationGracePeriodSeconds: 10
+      securityContext:
+        fsGroup: 1000
       containers:
       - name: halbert
         image: jonfairbanks/halbert
@@ -48,7 +50,7 @@ spec:
               key: token
         volumeMounts:
           - name: logs-pvc
-            mountPath: /app/logs:z
+            mountPath: /app/logs
       volumes:
         - name: logs-pvc
           persistentVolumeClaim:

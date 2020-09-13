@@ -2,6 +2,7 @@
   "hubot-base64",
   "hubot-chatlog",
   "hubot-diagnostics",
+  "hubot-healthz",
   "hubot-help",
   "hubot-maps",
   "hubot-redis-brain",

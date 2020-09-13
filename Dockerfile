@@ -7,6 +7,9 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 RUN apt-get update; apt-get install curl mocha redis git git-core jq -y
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+# RUN apt-get install whatever
+RUN apt-get autoremove -y; apt-get autoclean; rm -rf /var/lib/{apt,dpkg,cache,log}/
+# apt-get is unavailable after this point
 ENV NVM_DIR /usr/local/.nvm
 ENV NODE_VERSION 10.16.3
 RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default

@@ -1,0 +1,2 @@
+--------------------
+Halbert has launched. You can confirm its status by running `@hal uptime` in Slack or by viewing pod logs.

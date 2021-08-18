@@ -60,3 +60,18 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "halbert.createSecret" -}}
+{{- if (not .Values.existingSecret) }}
+    {{- true -}}
+{{- else -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "halbert.secretName" -}}
+    {{- if .Values.existingSecret -}}
+        {{- printf "%s" .Values.existingSecret -}}
+    {{- else -}}
+        {{- printf "%s" (include "halbert.fullname" .) -}}
+    {{- end -}}
+{{- end -}}

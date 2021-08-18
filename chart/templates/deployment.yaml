@@ -49,7 +49,7 @@ spec:
           - name: "HUBOT_SLACK_TOKEN"
             valueFrom:
               secretKeyRef: 
-                name: {{ .Values.slack.secretName }}
+                name: {{ include "halbert.secretName" . }}
                 key: token
           - name: "LOG_DIR"
             value: {{ .Values.slack.logDir }}

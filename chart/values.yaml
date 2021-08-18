@@ -12,7 +12,7 @@ image:
 
 slack:
   secretName: hubot-slack-token
-  token: YOUR-SLACK-TOKEN
+  token: ''
   logDir: '/app/logs/'
 
 

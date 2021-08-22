@@ -7,8 +7,6 @@ replicaCount: 1
 image:
   repository: jonfairbanks/halbert
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
 
 slack:
   secretName: hubot-slack-token

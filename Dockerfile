@@ -1,5 +1,5 @@
 # Base
-FROM ubuntu:20.04 as base
+FROM ubuntu:18.04 as base
 ENV TERM=xterm
 ENV NODE_ENV=production
 ENV NODE_VERSION 16.7.0

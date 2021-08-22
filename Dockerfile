@@ -2,7 +2,7 @@
 FROM ubuntu:18.04 as base
 ENV TERM=xterm
 ENV NODE_ENV=production
-ENV NODE_VERSION 16.7.0
+ENV NODE_VERSION 10.24.1
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini

@@ -21,7 +21,7 @@
     "hubot-uptime": "^1.0.1",
     "hubot-xkcd": "0.0.5",
     "moment-timezone": "^0.5.26",
-    "snoowrap": "^1.19.0"
+    "snoowrap": "^1.23.0"
   },
   "engines": {
     "node": "14.x"

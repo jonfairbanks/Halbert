@@ -6,7 +6,7 @@
   "author": "Jon Fairbanks <fairplay89@gmail.com>",
   "description": "A production ready Slackbot written with Hubot",
   "dependencies": {
-    "@slack/web-api": "^5.1.0",
+    "@slack/web-api": "^6.7.1",
     "hubot": "^3.3.2",
     "hubot-base64": "^1.0.1",
     "hubot-chatlog": "^1.0.5",

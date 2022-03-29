@@ -1,7 +1,8 @@
 #!/bin/sh
-externalscripts=$(jq '.dependencies | [keys[] | select(contains("hubot-")  and (contains("hubot-scripts") | not) and (contains("hubot-slack") | not))]' package.json)
-echo "$externalscripts" > external-scripts.json
 
 set -e
+
+npm install
 export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
-exec node_modules/.bin/hubot --name "hubot" "$@"
+
+exec node_modules/.bin/hubot --name "halbert" "$@"
